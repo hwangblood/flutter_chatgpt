@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'constants/constants.dart';
+import 'screens/screens.dart';
+
 void main() {
   runApp(const MainApp());
 }
@@ -9,12 +12,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
+    return MaterialApp(
+      title: 'Flutter ChatBot',
+      theme: ThemeData(
+        scaffoldBackgroundColor: scaffoldBackgroundColor,
+        appBarTheme: AppBarTheme(
+          color: cardColor,
         ),
       ),
+      home: const ChatScreen(),
     );
   }
 }
