@@ -47,31 +47,7 @@ class _ChatScreenState extends State<ChatScreen> {
             child: IconButton(
               icon: const Icon(Icons.model_training),
               onPressed: () async {
-                await showModalBottomSheet(
-                  context: context,
-                  backgroundColor: scaffoldBackgroundColor,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.vertical(
-                      top: Radius.circular(20),
-                    ),
-                  ),
-                  builder: (context) {
-                    return Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child: Row(
-                        children: const [
-                          Flexible(
-                            child: TextWidget(
-                              label: 'Chosen Model:',
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          // TODO model dropdown button
-                        ],
-                      ),
-                    );
-                  },
-                );
+                await BottomSheetService.showGPTModelModalSheet(context);
               },
             ),
           ),
