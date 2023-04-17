@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ChatText extends StatelessWidget {
+class TextWidget extends StatelessWidget {
   final String label;
   final double fontSize;
   final Color? color;
   final FontWeight? fontWeight;
 
-  const ChatText({
+  const TextWidget({
     Key? key,
     required this.label,
     this.fontSize = 18.0,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chatgpt/constants/colors.dart';
 import 'package:flutter_chatgpt/services/assets_manager.dart';
 
-import 'chat_text.dart';
+import 'text_widget.dart';
 
 class ChatTile extends StatelessWidget {
   final String msg;
@@ -39,7 +39,7 @@ class ChatTile extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Expanded(
-                  child: ChatText(
+                  child: TextWidget(
                     label: msg,
                   ),
                 ),

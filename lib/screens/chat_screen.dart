@@ -4,7 +4,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:flutter_chatgpt/constants/constants.dart';
 import 'package:flutter_chatgpt/services/services.dart';
-import 'package:flutter_chatgpt/widgets/chat_tile.dart';
+import 'package:flutter_chatgpt/widgets/widgets.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -42,11 +42,38 @@ class _ChatScreenState extends State<ChatScreen> {
         centerTitle: false,
         title: const Text('ChatGPT'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.more_vert_rounded),
-            onPressed: () {
-              // TODO on press more button
-            },
+          Tooltip(
+            message: 'Choose a model',
+            child: IconButton(
+              icon: const Icon(Icons.model_training),
+              onPressed: () async {
+                await showModalBottomSheet(
+                  context: context,
+                  backgroundColor: scaffoldBackgroundColor,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
+                    ),
+                  ),
+                  builder: (context) {
+                    return Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        children: const [
+                          Flexible(
+                            child: TextWidget(
+                              label: 'Chosen Model:',
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          // TODO model dropdown button
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ),
         ],
       ),
