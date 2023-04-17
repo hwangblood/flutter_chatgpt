@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatgpt/constants/colors.dart';
-import 'package:flutter_chatgpt/services/services.dart';
+
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
+import 'package:flutter_chatgpt/constants/constants.dart';
+import 'package:flutter_chatgpt/services/services.dart';
+import 'package:flutter_chatgpt/widgets/chat_tile.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
@@ -52,12 +55,13 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: chatMessages.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Text(
-                    'item $index',
-                    style: const TextStyle(
-                      color: Colors.white,
+                  final chatMessage = chatMessages.elementAt(index);
+                  return ChatTile(
+                    msg: chatMessage['msg'].toString(),
+                    chatIndex: int.parse(
+                      chatMessage['chatIndex'].toString(),
                     ),
                   );
                 },
