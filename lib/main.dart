@@ -20,6 +20,7 @@ class MainApp extends StatelessWidget {
           color: cardColor,
         ),
       ),
+      debugShowCheckedModeBanner: false,
       home: const ChatScreen(),
     );
   }
