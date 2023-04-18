@@ -99,6 +99,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     IconButton(
                       onPressed: () {
                         // TODO on press send button
+                        ApiService.fetchModels();
                       },
                       icon: const Icon(
                         Icons.send,
