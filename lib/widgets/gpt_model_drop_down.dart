@@ -1,28 +1,24 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+
 import 'package:flutter_chatgpt/constants/constants.dart';
 import 'package:flutter_chatgpt/models/models.dart';
-import 'package:flutter_chatgpt/services/api_service.dart';
+import 'package:flutter_chatgpt/providers/providers.dart';
 import 'package:flutter_chatgpt/widgets/widgets.dart';
 
-class GPTModelDropDown extends StatefulWidget {
+class GPTModelDropDown extends StatelessWidget {
   const GPTModelDropDown({super.key});
 
   @override
-  State<GPTModelDropDown> createState() => _GPTModelDropDownState();
-}
-
-class _GPTModelDropDownState extends State<GPTModelDropDown> {
-  String currentModel = 'text-davinci-003';
-
-  @override
   Widget build(BuildContext context) {
+    // watch the state changes
+    final gptModelsProvider = context.watch<GPTModelsProvider>();
     return SizedBox(
       height: 50,
       child: Center(
         child: FutureBuilder<List<GPTModel>>(
-          future: ApiService.fetchModels(),
-          // initialData: InitialData,
+          future: gptModelsProvider.models,
           builder:
               (BuildContext context, AsyncSnapshot<List<GPTModel>> snapshot) {
             switch (snapshot.connectionState) {
@@ -56,11 +52,9 @@ class _GPTModelDropDownState extends State<GPTModelDropDown> {
                             );
                           },
                         ),
-                        value: snapshot.data!.first.id,
+                        value: gptModelsProvider.currentModel,
                         onChanged: (value) {
-                          setState(() {
-                            currentModel = value.toString();
-                          });
+                          gptModelsProvider.updateCurrentModel(value!);
                         },
                       );
             }
