@@ -5,25 +5,32 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter_chatgpt/constants/constants.dart';
+import 'package:flutter_chatgpt/models/models.dart';
 
 class ApiService {
-  static Future<void> fetchModels() async {
+  static Future<Iterable<GPTModel>> fetchModels() async {
     try {
       final response = await http.get(
-        Uri.parse('${modelsEndpoint}adqwdaw'),
+        Uri.parse(modelsEndpoint),
         headers: {'Authorization': 'Bearer $apiKey'},
       );
 
       final jsonRes = jsonDecode(response.body);
-      log('RESPONSE: $jsonRes');
 
-      // check response
+      // check error
       if (jsonRes['error'] != null) {
         throw HttpException(jsonRes['error']['message']);
       }
-      await Future.value(null);
+
+      final models = jsonRes['data'] as Iterable;
+
+      return GPTModel.formJsonList(models);
+    } on HttpException catch (e) {
+      log('ERROR (HTTP): ${e.toString()}');
+      rethrow;
     } catch (e) {
       log('ERROR: ${e.toString()}');
+      rethrow;
     }
   }
 }
