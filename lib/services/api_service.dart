@@ -8,7 +8,7 @@ import 'package:flutter_chatgpt/constants/constants.dart';
 import 'package:flutter_chatgpt/models/models.dart';
 
 class ApiService {
-  static Future<Iterable<GPTModel>> fetchModels() async {
+  static Future<List<GPTModel>> fetchModels() async {
     try {
       final response = await http.get(
         Uri.parse(modelsEndpoint),

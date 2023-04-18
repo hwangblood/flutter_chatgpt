@@ -20,15 +20,12 @@ class BottomSheetService {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: const [
-              Flexible(
-                child: TextWidget(
-                  label: 'Chosen Model:',
-                  fontSize: 16.0,
-                ),
+              TextWidget(
+                label: 'Chosen Model:',
+                fontSize: 16.0,
               ),
-              SizedBox(width: 6),
-              Flexible(
-                flex: 2,
+              SizedBox(width: 8),
+              Expanded(
                 child: GPTModelDropDown(),
               ),
             ],
